@@ -573,7 +573,6 @@ ie - site creation*/
 }
 
 /*indicate failed validation, non-system errors*/
-/*TODO: consolidate - validationEmbedded used in gradebook, validation in many places, alertMessage legacy*/
 /*see: create an announcement but "forget" to give it a title*/
 .validationEmbedded,.validation,.alertMessage{
 	background: #fff url(images/warn.gif) 5px 5px no-repeat;

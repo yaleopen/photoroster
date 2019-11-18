@@ -7,8 +7,7 @@ import edu.yale.sass.pr.model.User;
 import java.util.List;
 
 /**
- * 
- * @author sz49
+ *
  * This Service will do to things, handle the User, and the Consumers
  */
 public interface AdminService {

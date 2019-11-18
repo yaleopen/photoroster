@@ -1,7 +1,5 @@
 package edu.yale.sass.pr.canvasapicall;
 
-import edu.yale.sass.pr.namecoach.Participant;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +14,6 @@ public class RosterPerson {
     private boolean hasImage;
     private List<String> sectionsStrings;
     private String netId;
-    private Participant nameCoachData;
 
     RosterPerson() {
     }
@@ -86,13 +83,5 @@ public class RosterPerson {
 
     public void setStudentData(StudentData studentData) {
         this.studentData = studentData;
-    }
-
-    public Participant getNameCoachData() {
-        return nameCoachData;
-    }
-
-    public void setNameCoachData(Participant nameCoachData) {
-        this.nameCoachData = nameCoachData;
     }
 }

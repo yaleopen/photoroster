@@ -8,7 +8,6 @@ RUN /bin/echo -e "deb http://ftp.us.debian.org/debian/ jessie main contrib non-f
 RUN cd /usr/local/tomcat/lib && \
     wget -nv https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.43.tar.gz && \
     tar xzf mysql-connector-java-5.1.43.tar.gz --strip-components 1 mysql-connector-java-5.1.43/mysql-connector-java-5.1.43-bin.jar && \
-    wget -nv http://backpack.its.yale.internal/vendor/oracle/jdbc/12.1.0.1/ojdbc7.jar && \
     rm -f mysql-connector-java-5.1.43.tar.gz
 
 # clean up default apps

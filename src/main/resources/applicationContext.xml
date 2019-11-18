@@ -15,7 +15,6 @@
         <property name="adminDao" ref="adminDao" />
     </bean>
     <bean id="canvasAPI" class="edu.yale.sass.pr.canvasapicall.CanvasAPI" scope="singleton" init-method="init" destroy-method="close"></bean>
-    <bean id="namecoachAPI" class="edu.yale.sass.pr.namecoach.NameCoachAPI" scope="singleton"></bean>
     <!-- TODO: Register Photo Service Implementation  -->
     <bean id="YalePhotoDirectoryService" class="" scope="singleton" init-method="init" destroy-method="close">
         <property name="photoDataSource">

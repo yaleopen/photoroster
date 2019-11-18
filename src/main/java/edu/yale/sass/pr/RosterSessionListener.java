@@ -19,7 +19,6 @@ public class RosterSessionListener implements HttpSessionListener {
 	}
 
 	public void sessionCreated(HttpSessionEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 

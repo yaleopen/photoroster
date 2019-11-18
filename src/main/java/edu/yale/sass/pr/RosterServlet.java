@@ -169,7 +169,7 @@ public class RosterServlet extends HttpServlet implements Constants {
 		else{
 
 			System.out.println("the course id is "+courseId);
-			if (courseId ==null){//todo will remove this condition, should redirect to unauthorized page
+			if (courseId ==null){
 				//courseId = "197";
 
 				System.out.println("the course id is null");
@@ -181,7 +181,7 @@ public class RosterServlet extends HttpServlet implements Constants {
 				Map<String, List<RosterPerson>> sectionUsers = new HashMap<String, List<RosterPerson>> ();
 				loadPhotos(request, courseId, session, sectionUsers, roles, userId);
 			}
-			catch(Exception e){ //todo e might to be specific
+			catch(Exception e){
 				System.out.println(e.getMessage());
 				e.printStackTrace();
 			}

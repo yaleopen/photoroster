@@ -112,7 +112,7 @@ public class PhotoBean implements Constants{
 	}
 
 	
-	public String[] getSections() { //todo
+	public String[] getSections() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
 		sections = (String []) session.getAttribute("courseSections");

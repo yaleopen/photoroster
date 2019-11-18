@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<title>Welcome to Yale Photo Roster</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<h:outputStylesheet library="css" name="profile2-profile-entity.css" />
+	<h:outputStylesheet library="css" name="jquery.cluetip.css" />
+	<h:outputStylesheet library="css" name="tool_base.css" />
+	<h:outputStylesheet library="css" name="tool.css" />
+	<h:outputStylesheet library="css" name="roster.css" />
+	<h:outputScript library="js" name="jquery.min.js" />
+	<h:outputScript library="js" name="roster.js" />
+
+</h:head>
+
+<h:body>
+
+	<div class="portletBody">
+		<h:form>
+			<ul class="navIntraTool actionToolBar" id="roster_navbar">
+				<li id="navbar_pics_link">
+					<span><h:commandLink value="Photo Roster" action="#{photoBean.picture}" /></span>
+				</li>
+				<li id="navbar_overview_link">
+					<span class="firstToolBarItem current">List View</span>
+				</li>
+			</ul>
+		</h:form>
+		<div id="rosterMainContainer">
+			<h:form id="roster_form">
+				<div id="roster_header">
+					<table class="rosterPageHeader">
+
+						<tbody>
+						<tr>
+							<td class="rosterPageHeaderLeft">
+								<h3>
+									Overview:
+									<h:outputText value="#{photoBean.title}" />
+								</h3>
+							</td>
+							<td class="rosterPageHeaderRight">
+								<a href="export" class="export_button">Export</a>
+								<h:commandButton onclick="window.print()" value="Print" /></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="roster_section_filter">
+					<table>
+						<tbody>
+							<tr>
+								<td><span class="filterLabel">View</span></td>
+								<td>
+									<h:selectOneMenu value="#{photoBean.section}" valueChangeListener="#{photoBean.sectionChanged}" onchange="submit();" appendTo="@this">
+										<f:selectItems value="#{photoBean.sections}" var="section" itemValue="#{section}" itemLabel="#{section}" />
+									</h:selectOneMenu>
+								</td>
+								<td><span class="filterLabel">Participants</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div id="roster_search2">
+					<table class="searchFilter" id="roster_form:search_group2">
+						<tbody>
+						<tr>
+							<td>
+								<div class="act" id="roster_form:search_filter2">
+									<h:inputText type="text" name="roster_form_search2"
+												 styleClass="overview_search_field" value="#{photoBean.input}"
+												 id="roster_form_search_field2" />
+
+									<h:commandButton action="#{photoBean.find()}" value="Find"
+													 class="active overview_find" id="roster_form_search_button2" />
+									<h:commandButton onclick="clear_overview();" type="button"
+													 name="roster_form:clear_button" class="overview_clear"
+													 value="Clear" id="roster_form_clear_button2" />
+								</div>
+							</td>
+							<td><div class="instruction">
+								<div class="rosterRoleTopLine">
+									Currently showing
+									<h:outputText value="#{photoBean.count}" />
+									participants
+								</div>
+								<div class="rosterRoleBottomLine">
+									<h:outputText value="#{photoBean.detailedMessage}" />
+								</div>
+							</div></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="roster_content">
+
+
+					<p:dataTable id="overview_table" value="#{photoBean.people}"
+								 var="person" styleClass="listHier rosterTable"
+								 rowClass="rosterTableRow">
+
+						<p:column headerClass="header col1" sortBy="#{person.lastName}">
+							<f:facet name="header">Last Name </f:facet>
+							#{person.lastName}
+						</p:column>
+
+						<p:column headerClass="header col2" sortBy="#{person.firstName}">
+							<f:facet name="header">First Name </f:facet>
+							#{person.firstName}
+						</p:column>
+
+						<p:column headerClass="header col3" sortBy="#{person.netid}">
+							<f:facet name="header">User ID </f:facet>
+							#{person.netid}
+						</p:column>
+
+						<p:column headerClass="header col4" sortBy="#{person.email}" width="25%">
+							<f:facet name="header">Email Address </f:facet>
+							#{person.email}
+						</p:column>
+
+						<p:column headerClass="header col5" sortBy="#{person.role}">
+							<f:facet name="header">Role </f:facet>
+							#{person.role}
+						</p:column>
+						<p:column headerClass="header col6" sortBy="#{person.residentialCollege}">
+							<f:facet name="header">Col</f:facet>
+							#{person.residentialCollege}
+						</p:column>
+						<p:column headerClass="header col7" sortBy="#{person.major}">
+							<f:facet name="header">Major</f:facet>
+							#{person.major}
+						</p:column>
+						<p:column headerClass="header col8" sortBy="#{person.classYear}" width="5%">
+							<f:facet name="header">Year </f:facet>
+							#{person.classYear}
+						</p:column>
+					</p:dataTable>
+				</div>
+			</h:form>
+		</div>
+
+
+		<div style="display: none" id="roster_participants_template"></div>
+
+	</div>
+
+</h:body>
+</html>

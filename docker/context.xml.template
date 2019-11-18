@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context>
+  <WatchedResource>WEB-INF/web.xml</WatchedResource>
+  <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+  
+  <Resource name="jdbc/photos@photodb"
+    auth="Container"
+    type="javax.sql.DataSource"
+    driverClassName="oracle.jdbc.OracleDriver"
+    url="${photodb_url}"
+    username="${photodb_username}"
+    password="${photodb_password}"
+    testOnBorrow="true"
+    testOnReturn="true"
+    testWhileIdle="true"
+    initialSize="2"
+    maxTotal="5"
+    maxIdle="5"
+    maxWaitMillis="10000"
+    minIdle="2"
+    minEvictableIdleTimeMillis="600000"
+    timeBetweenEvictionRunsMillis="600000"
+    removeAbandonedOnMaintenance="true"
+    removeAbandonedOnBorrow="true"
+    logAbandoned="true"
+    validationQuery="SELECT 1 FROM DUAL" />
+
+  <Resource name="jdbc/mysql@photoroster"
+    auth="Container"
+    type="javax.sql.DataSource"
+    driverClassName="com.mysql.jdbc.Driver"
+    url="${photoroster_url}"
+    username="${photoroster_username}"
+    password="${photoroster_password}"
+    testOnBorrow="true"
+    initialSize="2"
+    maxTotal="5"
+    maxIdle="5"
+    maxWaitMillis="10000"
+    minIdle="2"
+    minEvictableIdleTimeMillis="600000"
+    timeBetweenEvictionRunsMillis="600000"
+    removeAbandonedOnMaintenance="true"
+    removeAbandonedOnBorrow="true"
+    logAbandoned="true"
+    validationQuery="SELECT 1 FROM DUAL" />
+    
+ <Resource name="cas/photoroster"
+    auth="Container"
+	type="edu.yale.its.tp.cas.client.filter.CASFilterConfig"
+	factory="org.apache.naming.factory.BeanFactory"
+	loginUrl=""
+	validateUrl=""
+    serverName="${photoroster_server_url}"
+	wrapRequest="true"
+	createSession="false"/>
+ <Resource  
+    name="cas/uportal-connector" 
+    auth="Container"
+    type="edu.yale.its.tp.cas.client.filter.CASFilterConfig"
+    factory="org.apache.naming.factory.BeanFactory"
+    loginUrl=""
+    validateUrl=""
+    authorizedProxy=""
+    serverName="${photoroster_server_url}"
+    createSession="false"
+    wrapRequest="true"
+    />
+ 
+    <Environment description="" name="cas/AuthenticationFilter/casServerLoginUrl" override="false" type="java.lang.String" value=""/>
+    <Environment description="" name="cas/Cas20ProxyReceivingTicketValidationFilter/casServerUrlPrefix" override="false" type="java.lang.String" value=""/>
+
+    <Environment description="" name="cas/Cas20ProxyReceivingTicketValidationFilter/allowedProxyChains" override="false" type="java.lang.String" value=""/>
+   
+
+</Context>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+ 
+	<title>Manage Users</title> 
+	<h:outputStylesheet library="css" name="profile2-profile-entity.css" />
+	<h:outputStylesheet library="css" name="jquery.cluetip.css" />
+	<h:outputStylesheet library="css" name="tool_base.css" />
+	<h:outputStylesheet library="css" name="tool.css" />
+	<h:outputStylesheet library="css" name="roster.css" />
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript library="js" name="roster.js" />
+
+</h:head>
+
+<h:body>
+
+<h1>Admin page for managing the admin users</h1><div class="manage_consumer"><span class="admin_links"><a href="#{adminBean.context}/admin/admin.jsf">Manager Consumer</a></span></div>
+<div class="main">
+   <h:form>
+
+
+	  
+ 
+		<h:dataTable value="#{userBean.users}"
+						var="user" styleClass="listHier user"
+						 >
+
+
+						<h:column headerClass="header headerSortDown admin_col1"  >
+							<f:facet name="header">Name </f:facet>
+				       	  #{user.name}
+				       </h:column>
+
+						<h:column headerClass="header admin_col2" >
+							<f:facet name="header">Net id </f:facet>
+				       	  #{user.userId}
+				       </h:column>
+
+					 
+						<h:column headerClass="header admin_col4" >
+							<f:facet name="header">Admin? </f:facet>
+				       	  #{user.admin}
+				       </h:column>
+						 
+						<h:column headerClass="header admin_col6" >
+							<f:facet name="header">Last Access</f:facet>
+				       	  #{user.createdOn}
+				       </h:column>
+						<h:column headerClass="header admin_col7"  >
+							<f:facet name="header">Options </f:facet>
+				       	 <h:commandLink styleClass="edit" value="Edit" action="#{userBean.editit()}">
+				       		<f:setPropertyActionListener target="#{userBean.name}" value="#{user.name}" />
+				       		<f:setPropertyActionListener target="#{userBean.netId}" value="#{user.userId}" />
+				       		<f:setPropertyActionListener target="#{userBean.admin}" value="#{user.admin}" /> 
+				       	 </h:commandLink>
+				       	 <h:commandLink onclick="if (! confirm('Really want to delete?')) return false" styleClass="delete" action="#{userBean.delete()}" value="Delete">			
+				       		<f:setPropertyActionListener target="#{userBean.netId}" value="#{user.userId}" />
+						</h:commandLink>
+				       </h:column>
+		</h:dataTable>
+		
+		<h:messages class="red"></h:messages>
+		<table class="user">
+		<tr><td>Name:<span class='red'>*</span></td><td><h:inputText value="#{userBean.name}" size="40"></h:inputText></td></tr>
+		<tr><td>Net Id:<span class='red'>*</span></td><td><h:inputText  value="#{userBean.netId}"  size="40"></h:inputText></td></tr>
+		<tr><td>Admin?</td><td><h:selectBooleanCheckbox  value="#{userBean.admin}"></h:selectBooleanCheckbox></td></tr>
+		<tr><td><span class='red'>*</span>=required field</td><td>
+		<h:commandButton class="add_update_button" value="#{userBean.buttonText}" action="#{userBean.update()}"></h:commandButton> 
+		</td></tr>
+		
+		</table>
+
+	</h:form>
+	</div>
+</h:body>
+</html>

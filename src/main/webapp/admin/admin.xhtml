@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+ 
+	<title>Manage Consumer Keys</title> 
+	<h:outputStylesheet library="css" name="profile2-profile-entity.css" />
+	<h:outputStylesheet library="css" name="jquery.cluetip.css" />
+	<h:outputStylesheet library="css" name="tool_base.css" />
+	<h:outputStylesheet library="css" name="tool.css" />
+	<h:outputStylesheet library="css" name="roster.css" />
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript library="js" name="roster.js" />
+
+</h:head>
+
+<h:body>
+
+<h1>Admin page for managing the LTI consumers</h1> <div class="manage_user">
+<span class="admin_links"><a href="#{adminBean.context}/admin/user.jsf">Manager User</a></span><span class="admin_links"><a href="#{adminBean.context}/admin/event.jsf">View Events</a></span></div>
+<div class="main">
+   <h:form>
+
+
+	  
+ 
+		<h:dataTable id="overview_table" value="#{adminBean.consumers}"
+						var="consumer" styleClass="listHier admin"
+						rowClass="oldRow, evenRow">
+
+
+						<h:column headerClass="header headerSortDown admin_col1"  >
+							<f:facet name="header">Name </f:facet>
+				       	  #{consumer.name}
+				       </h:column>
+
+						<h:column headerClass="header admin_col2" >
+							<f:facet name="header">Key </f:facet>
+				       	  #{consumer.key}
+				       </h:column>
+
+						<h:column headerClass="header admin_col3" >
+							<f:facet name="header">Version  </f:facet>
+				       	  #{consumer.consumer_version}
+				       </h:column>
+
+						<h:column headerClass="header admin_col4" >
+							<f:facet name="header">Available? </f:facet>
+				       	  #{consumer.enabled}
+				       </h:column>
+						 
+						<h:column headerClass="header admin_col6" >
+							<f:facet name="header">Last Access</f:facet>
+				       	  #{consumer.updated}
+				       </h:column>
+						<h:column headerClass="header admin_col7"  >
+							<f:facet name="header">Options </f:facet>
+				       	 <h:commandLink styleClass="edit" value="Edit" action="#{adminBean.editit()}">
+				       		<f:setPropertyActionListener target="#{adminBean.key}" value="#{consumer.key}" />
+				       		<f:setPropertyActionListener target="#{adminBean.secret}" value="#{consumer.secret}" />
+				       		<f:setPropertyActionListener target="#{adminBean.protect}" value="#{consumer.protect}" />
+				       		<f:setPropertyActionListener target="#{adminBean.enableFrom}" value="#{consumer.enable_from}" />
+				       		<f:setPropertyActionListener target="#{adminBean.enableUntil}" value="#{consumer.enable_until}" />
+				       		<f:setPropertyActionListener target="#{adminBean.name}" value="#{consumer.name}" />
+				       		<f:setPropertyActionListener target="#{adminBean.enabled}" value="#{consumer.enabled}" />
+				       	 </h:commandLink>
+				       	 <h:commandLink styleClass="delete" onclick="if (! confirm('Really want to delete?')) return false" action="#{adminBean.delete()}" value="delete"> 
+				       		<f:setPropertyActionListener target="#{adminBean.key}" value="#{consumer.key}" />
+				       	 </h:commandLink>
+				       </h:column>
+		</h:dataTable>
+		
+		<h:messages styleClass="red"  ></h:messages>
+		<table class="consumer">
+		<tr><td>Name:<span class='red'>*</span></td><td><h:inputText value="#{adminBean.name}" size="40"></h:inputText></td></tr>
+		<tr><td>Key:<span class='red'>*</span></td><td><h:inputText styleClass="rowKey" value="#{adminBean.key}"  size="40"></h:inputText></td></tr>
+		<tr><td>Secret:<span class='red'>*</span></td><td><h:inputText value="#{adminBean.secret}" size="40"></h:inputText></td></tr>
+		<tr><td>Enabled?</td><td><h:selectBooleanCheckbox  value="#{adminBean.enabled}"></h:selectBooleanCheckbox></td></tr>
+		  
+		<tr><td><span class='red'>*</span>=required field</td><td>
+		<h:commandButton class="add_update_button" value="#{adminBean.updateButtonText}" action="#{adminBean.update()}"></h:commandButton>
+		<h:commandButton value="Cancel" action="#{adminBean.cancel()}"></h:commandButton>
+		</td></tr>
+		
+		</table>
+
+	</h:form>
+	</div>
+</h:body>
+</html>

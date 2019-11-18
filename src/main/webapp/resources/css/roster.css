@@ -1,0 +1,360 @@
+/**
+ * Copyright (c) 2008-2010 The Sakai Foundation
+ *
+ * Licensed under the Educational Community License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *             http://www.osedu.org/licenses/ECL-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
+table.rosterPageHeader {
+	width:95%;
+}
+
+.rosterPageHeaderLeft  {
+	vertical-align:top;
+    text-align:left;
+}
+
+.rosterPageHeaderRight  {
+	vertical-align:top;
+    text-align:right;
+}
+
+.filterLabel {
+	vertical-align:top;
+	font-weight:bold;
+}
+
+.filterElement {
+}
+
+.navIntraTool.rosterNavBar {
+	overflow: hidden;
+}
+
+#page-links a:link,
+#page-links a:visited {
+}
+
+.instruction.rosterTitleMessage {
+	display: block;
+}
+
+.instruction.rosterRoleGrouped {
+	text-align:right;
+}
+
+.rosterRoleTopLine {
+	padding-top:10px;
+	padding-left:10px;
+}
+
+.rosterRoleBottomLine {
+	padding-left:10px;
+}
+
+.rosterRoleTopLineGrouped {
+	padding-top:10px;
+	padding-right:10px;
+}
+
+.rosterRoleBottomLineGrouped {
+	padding-right:10px;
+}
+
+table.searchFilter {
+	/*margin-top:1em;*/
+}
+
+table.rosterPicturesFilter {
+	width:20em;
+}
+
+table.rosterPictures {
+	width:20em;
+}
+
+  #people {
+	width:900px;
+}
+table.rosterPictures td,  #people td {
+	min-width:160px;
+	height:15em;
+	vertical-align:top;
+	word-break:break-all;
+	word-wrap:break-word;
+	padding-bottom:1em;
+	font-size: 12px;
+}
+
+table.rosterPicturesSingleColumn {
+	width:320px;
+}
+
+table.rosterPicturesSingleColumn td {
+	width:160px;
+	vertical-align:top;
+	padding-bottom:1em;
+	word-break:break-all;
+	word-wrap:break-word;
+}
+
+.rosterPicture {
+	border:1px solid #bbb;
+	width:expression(160 + "px"); /* used for IE */
+	max-width:160px;
+	max-height:14em;
+}
+
+.rosterActionAlignment {
+	vertical-align:top;
+}
+
+.rosterActions {
+	margin-top:0.5em;
+}
+
+
+/* mouse-over actions on tables */
+
+.rosterTableRow {
+	background-color:#FFFFFF;
+}
+
+.rosterTableRowHighlight {
+	background-color:#FFFFC0;
+}
+
+@media print  { .noprint  { display: none; } }
+
+#roster_type_selector {
+    margin-bottom: 15px;
+}
+
+.cluetip-roster {
+    padding: 10px;
+    border: black solid 1px;
+    background-color: white;
+}
+
+.clue-right-roster .cluetip-arrows {
+  background-image: url(../images/darrowleft.gif);
+}
+.clue-left-roster .cluetip-arrows {
+  background-image: url(../images/darrowright.gif);
+  left: 100%;
+  margin-right: -11px;
+}
+.clue-top-roster .cluetip-arrows {
+  background-image: url(../images/darrowdown.gif);
+  top: 100%;
+  left: 50%;
+  margin-left: -11px;
+  height: 11px;
+  width: 22px;
+}
+.clue-bottom-roster .cluetip-arrows {
+  background-image: url(../images/darrowup.gif);
+  top: -11px;
+  left: 50%;
+  margin-left: -11px;
+  height: 11px;
+  width: 22px;
+}
+.cluetip-roster div#cluetip-close {
+    text-align: right;
+    margin: 0 5px 5px;
+    color: #900;
+}
+
+#roster_type_selector, #roster_official_picture_button, #roster_official_picture_button + span, .connection-add, .connection-request{
+	display:none;
+}
+
+.portletBody .navIntraTool li{
+	margin:0px 4px !important;
+}
+
+.ui-panel, .ui-grid,  .ui-widget-content{
+	border: 0 none !important;
+}
+
+.ui-datagrid-data{
+	width:900px !important;
+}
+
+.ui-datagrid-column{
+	display:none !important;
+}
+.col1{
+	width:10%;
+}
+
+.col2{
+	width:10%;
+}
+.col3{
+	width:25%;
+}
+.col4{
+	width:10%;
+}
+.col5{
+	width:5%;
+}
+.col6{
+	width:25%;
+}
+.col7{
+	width:15%;
+}
+
+
+.admin_col1{
+	width:15%;
+}
+
+.admin_col2{
+	width:15%;
+}
+.admin_col3{
+	width:15%;
+}
+.admin_col4{
+	width:5%;
+}
+.admin_col5{
+	width:5%;
+}
+.admin_col6{
+	width:15%;
+}
+.admin_col7{
+	width:20%;
+}
+
+.admin_col8{
+	width:25%;
+}
+.oldRow{
+	background-color: #232323;
+}
+
+.evenRow{
+	background-color:#989898;
+}
+
+table.admin{
+	border:1px solid #008b8b;
+	width:850px;
+	margin-bottom:30px;
+}
+
+.edit, .delete{
+	padding:0px 2px;
+}
+
+table.consumer{
+	border:1px solid #008e8e;
+	width:200px;
+	margin-bottom:30px;
+}
+#roster_form:roster_form_search_button, .overview_button
+{
+    background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top , #f6f6f5 0%, #e0e0e0 93%, #e0e0e0 97%, #e9e9e9 100%) repeat scroll 0 0 !important;
+    border: 1px solid #e0e3e5 !important;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px 0 #999999 !important;
+    color: #2683bc !important;
+    font-size: 11px !important;
+    font-weight: bold !important;
+    height: 24px !important;
+    margin-left: 0 !important;
+    margin-right: 3px;
+    text-shadow: 0 2px 3px #ffffff !important;
+}
+
+.export_button {
+  font: bold 11px Verdana;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #2683bc !important;
+  padding: 5px 9px 5px 9px;
+  border-width:0px;
+  margin-right:3px;
+  border-color:#eeeeee;
+  border-radius: 5px;
+  border-bottom:1px solid #dcdcdc !important;
+}
+
+.pics_grid{
+	max-width:790px;
+}
+
+.pics_grid_small{
+	max-width:200px;
+}
+
+
+.single_person{
+    float: left;
+    margin: 10px 70px 0px 10px;
+    padding: 0px;
+    width: 110px;
+    height: 270px;
+   
+}
+
+.keyrow{
+	background-color:yellow;
+}
+
+.red{
+	color: red;
+}
+
+.main{
+	margin:10px;
+}
+
+h3,h2{
+	text-align:center;
+}
+
+.manage_user, .manage_consumer{
+	padding:0px;
+	float:right;
+}
+
+.admin_links{
+	border:1px solid #deb887;
+	padding:2px 5px;
+	margin:0px 5px;
+}
+
+.admin_links a{
+	
+	text-decoration: none;
+}
+
+.h3{
+	
+	font-size: 14px;
+	font-weight:bold;
+}
+
+.center{
+	margin:20px auto;
+	width:50%;
+	
+}
+
+ 

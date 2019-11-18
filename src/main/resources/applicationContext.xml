@@ -1,0 +1,56 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd     http://www.springframework.org/schema/tx            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd           http://www.springframework.org/schema/context            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+    <bean id="photoDataSource" class="org.springframework.jndi.JndiObjectFactoryBean" scope="singleton">
+        <property name="resourceRef">
+            <value>true</value>
+        </property>
+        <property name="jndiName">
+            <!-- TODO: Update with Photo Resource Name from context.xml -->
+            <value>jdbc/photos@photodb</value>
+        </property>
+    </bean>
+    <bean id="adminDao" class="edu.yale.sass.pr.service.impl.dao.AdminDaoServiceImpl">
+        <property name="sessionFactory" ref="SessionFactory" />
+    </bean>
+    <bean id="adminService" class="edu.yale.sass.pr.service.impl.AdminServiceImpl">
+        <property name="adminDao" ref="adminDao" />
+    </bean>
+    <bean id="canvasAPI" class="edu.yale.sass.pr.canvasapicall.CanvasAPI" scope="singleton" init-method="init" destroy-method="close"></bean>
+    <!-- TODO: Register Photo Service Implementation  -->
+    <bean id="YalePhotoDirectoryService" class="" scope="singleton" init-method="init" destroy-method="close">
+        <property name="photoDataSource">
+            <ref local="photoDataSource" />
+        </property>
+        <property name="canvasAPI">
+            <ref local="canvasAPI" />
+        </property>
+    </bean>
+    <bean id="DataSource" class="org.springframework.jndi.JndiObjectFactoryBean" scope="singleton">
+        <property name="resourceRef">
+            <value>true</value>
+        </property>
+        <property name="jndiName" value="jdbc/mysql@photoroster" />
+    </bean>
+    <!-- Session Factory Declaration -->
+    <bean id="SessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="DataSource" />
+        <property name="annotatedClasses">
+            <list>
+                <value>edu.yale.sass.pr.model.LTIConsumer</value>
+                <value>edu.yale.sass.pr.model.RosterEvent</value>
+                <value>edu.yale.sass.pr.model.User</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">false</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- Enable the configuration of transactional behavior based on annotations -->
+    <tx:annotation-driven transaction-manager="txManager" />
+    <!-- Transaction Manager is defined -->
+    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="SessionFactory" />
+    </bean>
+</beans>

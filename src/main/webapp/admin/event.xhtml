@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+ 
+	<title>Manage Events</title> 
+	<h:outputStylesheet library="css" name="profile2-profile-entity.css" />
+	<h:outputStylesheet library="css" name="jquery.cluetip.css" />
+	<h:outputStylesheet library="css" name="tool_base.css" />
+	<h:outputStylesheet library="css" name="tool.css" />
+	<h:outputStylesheet library="css" name="roster.css" />
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript library="js" name="roster.js" />
+
+</h:head>
+
+<h:body>
+
+<h1>Event page for the admin users</h1><div class="manage_consumer"><span class="admin_links"><a href="#{adminBean.context}/admin/admin.jsf">Manager Consumer</a></span></div>
+<div class="main">
+   <h:form>
+
+
+
+<h:inputText value="#{adminBean.eventSearchValue}" ></h:inputText>
+<h:commandButton value="Search" action="#{adminBean.searchEvent()}"></h:commandButton>	  
+ 
+		<h:dataTable value="#{adminBean.events}"
+						var="event" styleClass="listHier user"
+						 >
+
+						<h:column headerClass="header headerSortDown admin_col1"  >
+							<f:facet name="header">User Id </f:facet>
+				       	  #{event.userId}
+				       </h:column>
+
+						<h:column headerClass="header headerSortDown admin_col1"  >
+							<f:facet name="header">IP </f:facet>
+				       	  #{event.clientIP}
+				       </h:column>
+
+						<h:column headerClass="header admin_col2" >
+							<f:facet name="header">Session Start </f:facet>
+				       	  #{event.sessionStart}
+				       </h:column>
+				       
+				       		<h:column headerClass="header admin_col3" >
+							<f:facet name="header">Session End </f:facet>
+				       	  #{event.sessionEnd}
+				       </h:column>
+
+					 
+						<h:column headerClass="header admin_col8" >
+							<f:facet name="header">Browser </f:facet>
+				       	  #{event.browser}
+				       </h:column>
+						 
+						<h:column headerClass="header admin_col4" >
+							<f:facet name="header">Course</f:facet>
+				       	  #{event.courseId}
+				       </h:column> 
+		</h:dataTable>
+	</h:form>
+	</div>
+</h:body>
+</html>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Welcome to Yale Photo Roster</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<h:outputStylesheet library="css" name="profile2-profile-entity.css" />
+	<h:outputStylesheet library="css" name="jquery.cluetip.css" />
+	<h:outputStylesheet library="css" name="tool_base.css" />
+	<h:outputStylesheet library="css" name="tool.css" />
+	<h:outputStylesheet library="css" name="roster.css" />
+
+	<h:outputScript library="js" name="jquery.min.js" />
+	<h:outputScript library="js" name="roster.js" />
+</h:head>
+<h:body>
+
+	<div class="portletBody">
+		<h:form>
+			<ul class="navIntraTool actionToolBar" id="roster_navbar">
+				<li id="navbar_pics_link">
+					<span class="current">
+						<a href="javascript:;" title="View site members with pictures">Photo Roster</a>
+					</span>
+				</li>
+				<li id="navbar_overview_link">
+					<span class="firstToolBarItem">
+						<h:commandLink value="List View" action="#{photoBean.overview}" />
+					</span>
+				</li>
+			</ul>
+		</h:form>
+
+		<div id="rosterMainContainer">
+			<h:form id="roster_form">
+				<div id="roster_header">
+					<table class="rosterPageHeader">
+
+						<tbody>
+							<tr>
+								<td class="rosterPageHeaderLeft">
+									<h3>
+										Pictures:
+										<h:outputText value="#{photoBean.title}" />
+									</h3>
+								</td>
+								<td class="rosterPageHeaderRight">
+								<h:commandButton onclick="window.print()" value="Print" /></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="roster_section_filter">
+					<table>
+						<tbody>
+							<tr>
+								<td><span class="filterLabel">View</span></td>
+								<td><h:selectOneMenu value="#{photoBean.section}"
+										valueChangeListener="#{photoBean.sectionChanged}"
+										onchange="submit();">
+										<f:selectItems value="#{photoBean.sections}" var="section"
+											itemValue="#{section}" itemLabel="#{section}" />
+
+
+									</h:selectOneMenu></td>
+								<td><span class="filterLabel">Participants</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="roster_sort_filter">
+					<table>
+						<tbody>
+							<tr>
+								<td><span class="filterLabel">Sort By</span></td>
+								<td>
+									<h:selectOneMenu value="#{photoBean.sortOption}"
+													 valueChangeListener="#{photoBean.sortChanged}"
+													 onchange="submit();">
+										<f:selectItems value="#{photoBean.sortOptions}" var="sortOption"
+													   itemValue="#{sortOption}" itemLabel="#{sortOption}" />
+									</h:selectOneMenu>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="roster_search">
+					<table class="searchFilter" id="roster_form:search_group">
+						<tbody>
+							<tr>
+								<td>
+									<div class="act" id="roster_form:search_filter">
+										<h:inputText type="text" name="roster_form_search" class="picture_search_field"
+											value="#{photoBean.input}" id="roster_form_search_field" />
+										<h:commandButton action="#{photoBean.findPicture()}"
+											value="Find" class="active" id="roster_form_search_button" />
+
+										<h:commandButton type="button" name="roster_form:clear_button" class="picture_clear" onclick="clear_picture();"
+											value="Clear" id="roster_form_clear_button" />
+									</div>
+								</td>
+								<td><div class="instruction">
+										<div class="rosterRoleTopLine">
+											Currently showing
+											<h:outputText value="#{photoBean.count}" />
+											participants
+										</div>
+										<div class="rosterRoleBottomLine">
+											<h:outputText value="#{photoBean.detailedMessage}" />
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="roster_content">
+					<div id="roster_type_selector">
+
+						<h:inputText type="radio" id="roster_official_picture_button"
+							value="official" name="roster_picture_type" />
+						<span>Official Photos</span>
+						<h:inputText type="radio" checked=""
+							id="roster_profile_picture_button" value="profile"
+							name="roster_picture_type" />
+						<span>Pictures from Profile</span>
+					</div>
+					<div id="roster_pics">
+						<table class="rosterPicturesFilter">
+
+							<tbody>
+								<tr>
+									<td class="rosterPageHeaderLeft"><h:commandButton
+											type="button" onclick="toggleNames(this);" value="Hide Names"
+											id="roster_form_hide_names" /> <h:commandButton
+											value="#{photoBean.viewButtonText}"
+											action="#{photoBean.changeWidth()}"
+											id="roster_form_pics_view" /></td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="#{photoBean.pictureGrid}">
+							<ui:repeat var="person" value="#{photoBean.people}"
+								columns="#{photoBean.tableWidth}"   id="people"
+								 >
+
+									<div class="single_person">
+										<div>
+											<img title="photo of frist last" width="100"
+												class="rosterPicture" height="120"
+												src="photo.jpg?uid=#{person.netid}" />
+										</div>
+										<h:panelGroup id="displayed_name" layout="block" styleClass="displayed_name">
+											<span title="display_name here">
+												<h:outputText value="#{person.name}" />
+											</span>
+										</h:panelGroup>
+
+										<div class="rosterActions"></div>
+										<div>
+											Role:
+											<h:outputText value="#{person.role}" />
+										</div>
+										<div>
+											Class:
+											<h:outputText value="#{person.classYear}" />
+										</div>
+										<div>
+											Major:
+											<h:outputText value="#{person.major}" />
+										</div>
+										<div>
+											<a href="mailto:#{person.email}"><h:outputText
+													value="#{person.email}" /></a>
+										</div>
+									</div>
+
+							</ui:repeat>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</div>
+	</div>
+</h:body>
+</html>

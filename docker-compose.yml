@@ -1,0 +1,26 @@
+version: '3.0'
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: <MYSQL_PASSWORD>
+      MYSQL_DATABASE: photoroster
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./scripts:/docker-entrypoint-initdb.d
+    restart: always
+
+  photorosterapp:
+    depends_on:
+      - db
+    links:
+      - db:db
+    image: lms/photoroster
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+volumes:
+  dbdata:

@@ -1,6 +1,12 @@
 canvas-photoroster
 ====
 
+Prerequisites:
+* Implement `YalePhotoDirectoryService`
+* Refactor based on `TODO` comments
+
+
+
 To Build: 
 
 ---

@@ -3,7 +3,6 @@ package edu.yale.sass.pr;
 import edu.yale.sass.pr.api.AdminService;
 import edu.yale.sass.pr.model.User;
 import edu.yale.sass.pr.util.ServerConfig;
-import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -19,7 +18,6 @@ import java.io.IOException;
 public class AdminServlet extends HttpServlet {
 
 	public static final long serialVersionUID = -4;
-	static Logger logger = Logger.getLogger(AdminServlet.class);
 	AdminService adminService;
 	
 	  public void init(ServletConfig config) throws ServletException {

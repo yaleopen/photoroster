@@ -2,7 +2,6 @@ package edu.yale.sass.pr.bean;
 
 import edu.yale.sass.pr.api.AdminService;
 import edu.yale.sass.pr.model.User;
-import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -18,8 +17,6 @@ import java.util.List;
 @ManagedBean(name = "userBean")
 @RequestScoped
 public class UserBean {
-	
-	static Logger logger = Logger.getLogger(UserBean.class);
 	
 	@ManagedProperty(value = "#{adminService}")
 	AdminService adminService;

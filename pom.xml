@@ -195,13 +195,6 @@
             <version>0.9.1.2</version>
         </dependency>
 
-        <!-- Log4j library -->
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.16</version>
-        </dependency>
-
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>

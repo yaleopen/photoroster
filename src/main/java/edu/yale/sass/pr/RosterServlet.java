@@ -15,7 +15,6 @@ import edu.yale.sass.pr.service.YalePhotoDirectoryServiceException;
 import edu.yale.sass.pr.service.impl.PersonImpl;
 import edu.yale.sass.pr.util.RosterUtil;
 import edu.yale.sass.pr.util.ServerConfig;
-import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -32,7 +31,6 @@ import java.util.*;
 
 public class RosterServlet extends HttpServlet implements Constants {
 
-	private static Logger logger = Logger.getLogger(RosterServlet.class);
 	public  static final long serialVersionUID = -3;
 	private YalePhotoDirectoryService yalePhotoDirectoryService;
 	private AdminService adminService;
